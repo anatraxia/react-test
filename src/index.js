@@ -9,5 +9,29 @@ const gaInfo = {
   description: 'All about GA'
 }
 
-ReactDOM.render(<Ga info={gaInfo} />, document.getElementById('root'))
+const post = {
+  title: 'Dinosaurs are awesome',
+  author: 'Stealthy Stegosaurus',
+  body: 'Check out this body property!',
+  comments: [
+    {
+      title: 'First!',
+      user: 'Prima'
+    },
+    {
+      title: 'Great post',
+      user: 'Shimei'
+    },
+    {
+      title: 'Hire this author now!',
+      user: 'Kang Sheng'
+    },
+    {
+      title: 'Hire this author now!',
+      user: 'Kang Sheng'
+    }
+  ]
+}
+
+ReactDOM.render(<Ga info={gaInfo} post={post} />, document.getElementById('root'))
 registerServiceWorker()
