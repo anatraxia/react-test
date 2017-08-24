@@ -1,5 +1,11 @@
 import React, {Component} from 'react'
 
+// All my fn components (comp that doesn't change state)
+import DisplayedCounter from './DisplayedCounter'
+import DisplayedName
+ from './DisplayedName'
+import Enemy from './Enemy'
+
 class Counter extends Component {
   constructor (props) {
     super()
@@ -7,8 +13,10 @@ class Counter extends Component {
     // only time you can initialize state with = sign
     this.state = {
       number: props.num,
-      name: 'Typed your name',
-      namesArr: []
+      keyword: 'Search keyword',
+      enemiesArr: [
+        'The Hound', 'Cersei', 'Sansa'
+      ]
     }
 
     // console.log('at constructor', this)
@@ -27,14 +35,12 @@ class Counter extends Component {
       let typedName = e.target.value
 
       this.setState((prevState) => {
-        console.log('prev state', prevState)
-        console.log('name', typedName)
         return {
-          name: typedName
+          keyword: typedName
         }
       })
     } else {
-      this.setState({ name: 'Typed your name' })
+      this.setState({ keyword: 'Search keyword:' })
     }
   }
 
@@ -45,39 +51,40 @@ class Counter extends Component {
   }
 
   render () {
-    let allNames = this.state.namesArr.map((name, index) => {
-      return <li key={index}>{name}</li>
+    let allEnemies = this.state.enemiesArr.map((name, index) => {
+      return <Enemy key={index} name={name} />
     })
 
     return (
       <div>
-        <h1>
-          {/* {{}}
-            <%%>
-            <%%>
-            - -
-          */}
-          Counter: {this.state.number}
-        </h1>
-        <h2>{this.state.name}</h2>
-        <div>
-          <label>
-            Type your name:
-            <input type='text' onChange={(e) => this.showName(e)} />
-          </label>
-        </div>
+        <DisplayedCounter number={this.state.number} />
+
         <button
           onClick={(e) => this.increaseCounter(e)}>
-          boom!
-        </button>
-        <button onClick={(e) => this.updateList(e)}>
-          New
+          +1
         </button>
 
         <h2>Arya's kill list</h2>
         <ul>
-          {allNames}
+          { allEnemies }
         </ul>
+
+        {/* <DisplayedName keyword={this.state.keyword} />
+
+          <div>
+          <label>
+            Type your name:
+            <input type='text' onChange={(e) => this.showName(e)} />
+          </label>
+          </div>
+          <button
+          onClick={(e) => this.increaseCounter(e)}>
+          boom!
+          </button>
+          <button onClick={(e) => this.updateList(e)}>
+          New
+        </button> */}
+
       </div>
     )
   }
