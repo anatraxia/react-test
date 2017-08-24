@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import Ga from './Ga'
 import registerServiceWorker from './registerServiceWorker'
+
+import Ga from './Ga'
+import Counter from './Counter'
 
 const gaInfo = {
   title: 'GA Overflow',
@@ -33,5 +35,5 @@ const post = {
   ]
 }
 
-ReactDOM.render(<Ga info={gaInfo} post={post} />, document.getElementById('root'))
+ReactDOM.render(<Counter num={0} />, document.getElementById('root'))
 registerServiceWorker()

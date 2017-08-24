@@ -15,6 +15,12 @@ let questions = [
     description: 'I know rite',
     upvotes: 5,
     downvotes: 1
+  },
+  {
+    title: 'Node vs Ruby',
+    description: 'So many things so little time',
+    upvotes: 0,
+    downvotes: 100
   }
 ]
 
@@ -22,6 +28,10 @@ class Ga extends Component {
   render () {
     let commentList = this.props.post.comments.map(function (comment, index) {
       return <Comment title={comment.title} user={comment.user} key={index} />
+    })
+
+    let allQuestions = questions.map(function (q, index) {
+      return <Question key={index} detail={q} />
     })
 
     return (
@@ -36,15 +46,16 @@ class Ga extends Component {
         <p>
           { this.props.post.body }
         </p>
+
         <h3>Comments</h3>
         <ul>
           { commentList }
         </ul>
 
-        {/* <ul>
-          <Question detail={questions[0]} />
-          <Question detail={questions[1]} />
-        </ul> */}
+        <h3>Questions</h3>
+        <ul>
+          { allQuestions }
+        </ul>
       </div>
     )
   }
